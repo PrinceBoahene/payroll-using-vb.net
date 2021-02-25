@@ -1,0 +1,172 @@
+www.youtube.com/watch?v=u9DqI0oAzmk
+//sql queries
+https://www.w3resource.com/sql/aggregate-functions/sum-function.php
+
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.NewEmployeeTable
+	(
+	ID int IDENTITY (1,1) NOT NULL,
+	PrefixID varchar(50) NOT NULL,
+	EmployeeID AS (PREFIXID + RIGHT('000' + CAST(ID AS VARCHAR(3)),3)) PERSISTED,
+	EmployeeName varchar(MAX) NULL,
+	Department varchar(MAX) NULL,
+	Gender varchar(50) NULL,
+	DateOfBirth date NULL,
+	Contact1 varchar(50) NULL,
+	Contact2 varchar(50) NULL,
+	Address varchar(100) NULL,
+	Email varchar(100) NULL,
+	DateHired date NULL,
+	BankName varchar(MAX) NULL,
+	BankBranch varchar(MAX) NULL,
+	AccountName varchar(MAX) NULL,
+	AccountNumber varchar(MAX) NULL,
+	SSNITNumber varchar(MAX) NULL,
+	EmployeeStatus varchar(100) NULL,
+	IncomeStatus varchar(MAX) NULL,
+	SSNITStatus varchar(MAX) NULL,
+	TaxableStatus varchar(MAX) NULL,
+	SSNIT5Amt decimal(18, 2) NULL,
+	Payee_Tier2 decimal(18, 2) NULL,
+	SSNIT13Amt decimal(18, 2) NULL,
+	Welfare decimal(18, 2) NULL,
+	BasicIncome decimal(18, 2) NULL,
+	Allowance decimal(18, 2) NULL,
+	GrossIncome decimal(18, 2) NULL,
+	TaxableIncome decimal(18, 2) NULL,
+	IncomeTax decimal(18, 2) NULL,
+	NetIncome decimal(18, 2) NULL,
+	Netpay decimal(18, 2) NULL,
+	ProfileImage nchar(10) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+ALTER TABLE dbo.Table_1 ADD CONSTRAINT
+	PK_Table_1 PRIMARY KEY CLUSTERED 
+	(
+	EmployeeID
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Table_1 SET (LOCK_ESCALATION = TABLE)
+GO
+COMMIT
+
+///////////
+ 
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+GO
+CREATE TABLE dbo.RegistrationList
+	(
+	ID int  NOT NULL,
+	PrefixID varchar(50) NOT NULL,
+	EmployeeID AS (PREFIXID + RIGHT('000' + CAST(ID AS VARCHAR(3)),3)) PERSISTED,
+	EmployeeName varchar(MAX) NULL,
+	Department varchar(MAX) NULL,
+	Gender varchar(50) NULL,
+	DateOfBirth date NULL,
+	Contact1 varchar(50) NULL,
+	Contact2 varchar(50) NULL,
+	AddressCity varchar(100) NULL,
+	Email varchar(100) NULL,
+	DateHired date NULL,
+	BankName varchar(MAX) NULL,
+	BankBranch varchar(MAX) NULL,
+	AccountName varchar(MAX) NULL,
+	AccountNumber varchar(MAX) NULL,
+	SSNITNumber varchar(MAX) NULL,
+	EmployeeStatus varchar(100) NULL,
+	IncomeStatus varchar(MAX) NULL,
+	SSNITStatus varchar(MAX) NULL,
+	TaxableStatus varchar(MAX) NULL,
+	SSNIT5Amt decimal(18, 2) NULL,
+	Payee_Tier2 decimal(18, 2) NULL,
+	SSNIT13Amt decimal(18, 2) NULL,
+	Welfare decimal(18, 2) NULL,
+	BasicIncome decimal(18, 2) NULL,
+	Allowance decimal(18, 2) NULL,
+	GrossIncome decimal(18, 2) NULL,
+	TaxableIncome decimal(18, 2) NULL,
+	IncomeTax decimal(18, 2) NULL,
+	NetIncome decimal(18, 2) NULL,
+	Netpay decimal(18, 2) NULL,
+	payrate decimal(18,2) null,
+	DaysWorked int null,
+	percentageDeduct decimal(18,2) null,
+	EmployeeImage image NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+INSERT INTO [dbo].[NewEmployeeTable] ([PrefixID],[EmployeeName],[Department],[Gender],[DateOfBirth]
+           ,[Contact1]
+           ,[Contact2]
+           ,[Address]
+           ,[Email]
+           ,[DateHired]
+           ,[BankName]
+           ,[BankBranch]
+           ,[AccountName]
+           ,[AccountNumber]
+           ,[SSNITNumber]
+           ,[EmployeeStatus]
+           ,[IncomeStatus]
+           ,[SSNITStatus]
+           ,[TaxableStatus]
+           ,[SSNIT5Amt]
+           ,[Payee_Tier2]
+           ,[SSNIT13Amt]
+           ,[Welfare]
+           ,[BasicIncome]
+           ,[Allowance]
+           ,[GrossIncome]
+           ,[TaxableIncome]
+           ,[IncomeTax]
+           ,[NetIncome]
+           ,[Netpay]
+           ,[ProfileImage])
+     VALUES
+
+
+
+
+alter table newemployeetable add EmployeeImage image;
+
+select * from newemployeetable;
+
+truncate table newemployeetable;
+
+// get thelast id in a row
+SELECT MAX([NewEmployeeTable].[ID]) FROM NewEmployeeTable 
+
+//count no of row with condition
+SELECT  count(*) FROM NewEmployeeTable WHERE EmployeeStatus = 'Active' or EmployeeStatus ='Leave' or EmployeeStatus ='In-Active' 
+
+//sum of a row in sql direct
+SELECT SUM(advance_amount)  FROM orders;
+
+SELECT SUM (opening_amt + receive_amt) FROM customer;
+
+SELECT SUM (advance_amount) FROM orders WHERE agent_code = 'A003';
